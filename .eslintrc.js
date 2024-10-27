@@ -49,7 +49,11 @@ module.exports = {
         pattern: "src/domain/usecases",
       },
     ],
-    "boundaries/ignore": ["*.*"], // ignore top level config files
+    "boundaries/ignore": [
+      "*.*", // ignore top level config files
+      "src/fixtures/**",
+      "**/*.spec.ts",
+    ],
   },
   rules: {
     "boundaries/element-types": [
