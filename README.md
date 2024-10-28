@@ -11,12 +11,18 @@ A template repository with a few TypeScript features:
 
 The sample app is not intended to offer guidance on best practices for organising code. It simply demonstrates some capabilities for a basic CLI app with code and unit tests.
 
+Some of the added libraries (`Commander.js`, `seedrandom`) are intended to assist with the katas in [clean architecture katas](https://github.com/jbrunton/clean-arch-katas).
+
 Usage:
 
 ```bash
 $ pnpm install
+
 $ pnpm cli greet
 > Hello, World!
+
+$ pnpm cli roll
+> 4
 ```
 
 Options:
@@ -27,6 +33,9 @@ $ pnpm cli greet Amy
 
 $ pnpm cli greet 'Le Monde' --greeting 'Bonjour, :subject!'
 > Bonjour, Le Monde!
+
+$ pnpm cli roll -n 4 --dice-size 12 --seed abc
+> 8, 7, 8, 7
 ```
 
 ## Running tests
