@@ -11,6 +11,8 @@ A template repository with a few TypeScript features:
 
 The sample app is not intended to offer guidance on best practices for organising code. It simply demonstrates some capabilities for a basic CLI app with code and unit tests.
 
+Some of the added libraries (`Commander.js`, `seedrandom`) are intended to assist with the katas in [clean architecture katas](https://github.com/jbrunton/clean-arch-katas).
+
 Usage:
 
 ```bash
