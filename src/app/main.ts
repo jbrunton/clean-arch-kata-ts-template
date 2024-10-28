@@ -1,5 +1,6 @@
 import { Command } from "commander";
 import { getGreeting } from "usecases/greet";
+import { rollDice } from "usecases/roll";
 
 const program = new Command()
   .name("greeter")
@@ -15,15 +16,28 @@ program
   });
 
 program
-  .command("goodbye")
-  .argument(
-    "[name]",
-    "the name of the person/subject to say goodbye to",
-    "World",
+  .command("roll")
+  .option(
+    "-n, --number <number>",
+    "the number of dice rolls",
+    (input) => Number.parseInt(input),
+    1,
   )
-  .action((name) => {
-    const greeting = getGreeting({ name }, "Goodbye, :subject.");
-    console.info(greeting);
+  .option("-s, --seed <string>", "seed for the PRNG")
+  .option(
+    "-d, --dice-size <number>",
+    "the dice size",
+    (input) => Number.parseInt(input),
+    6,
+  )
+  .action((opts) => {
+    const rolls = rollDice({
+      seed: opts.seed,
+      diceSize: opts.diceSize,
+      rolls: opts.number,
+    });
+
+    console.info(rolls.join(", "));
   });
 
 const main = async () => {

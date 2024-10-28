@@ -15,8 +15,12 @@ Usage:
 
 ```bash
 $ pnpm install
+
 $ pnpm cli greet
 > Hello, World!
+
+$ pnpm cli roll
+> 4
 ```
 
 Options:
@@ -27,6 +31,9 @@ $ pnpm cli greet Amy
 
 $ pnpm cli greet 'Le Monde' --greeting 'Bonjour, :subject!'
 > Bonjour, Le Monde!
+
+$ pnpm cli roll -n 4 --dice-size 12 --seed abc
+> 8, 7, 8, 7
 ```
 
 ## Running tests
