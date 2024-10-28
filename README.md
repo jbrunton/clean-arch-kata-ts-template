@@ -6,3 +6,25 @@ A template repository with a few TypeScript features:
 2. Lints with `eslint` and formats with `prettier`.
 3. Git hooks with `husky` and `lint-staged`.
 4. Enforces code boundaries with `eslint-plugin-boundaries`.
+
+## The sample app
+
+The sample app is not intended to offer guidance on best practices for organising code. It simply demonstrates some capabilities for a basic CLI app with code and unit tests.
+
+Usage:
+
+```bash
+$ pnpm install
+$ pnpm cli greet
+> Hello, World!
+```
+
+Options:
+
+```bash
+$ pnpm cli greet Amy
+> Hello, Amy!
+
+$ pnpm cli greet 'Le Monde' --greeting 'Bonjour, :subject!'
+> Bonjour, Le Monde!
+```

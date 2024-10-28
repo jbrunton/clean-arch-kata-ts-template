@@ -1,5 +1,7 @@
 import { Subject } from "entities/subject";
 
-export const getGreeting = (subject: Subject): string => {
-  return `Hello, ${subject.name}!`;
+const defaultGreeting = "Hello, :subject!";
+
+export const getGreeting = (subject: Subject, greeting?: string): string => {
+  return (greeting ?? defaultGreeting).replace(":subject", subject.name);
 };
