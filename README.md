@@ -28,3 +28,12 @@ $ pnpm cli greet Amy
 $ pnpm cli greet 'Le Monde' --greeting 'Bonjour, :subject!'
 > Bonjour, Le Monde!
 ```
+
+## Running tests
+
+```bash
+$ pnpm test
+
+# Or, to watch for changes
+$ pnpm test:watch
+```
