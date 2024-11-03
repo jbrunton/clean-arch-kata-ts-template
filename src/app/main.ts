@@ -1,44 +1,72 @@
-import { Command } from "commander";
 import { getGreeting } from "usecases/greet";
+import yargs, { CommandModule } from "yargs";
+import { hideBin } from "yargs/helpers";
+import { StrictArguments } from "./commands/types";
 import { rollDice } from "usecases/roll";
 
-const program = new Command()
-  .name("greeter")
-  .description("Example CLI command for saying hello");
+type GreetArgs = {
+  name: string;
+  greeting?: string;
+};
 
-program
-  .command("greet")
-  .argument("[name]", "the name of the person/subject to greet", "World")
-  .option("-g, --greeting <greeting>", "the greeting to say")
-  .action((name, opts) => {
-    const greeting = getGreeting({ name }, opts.greeting);
+const greetCommand: CommandModule<object, GreetArgs> = {
+  command: "greet [name]",
+  describe: "the name of the person/subject to greet",
+  builder: {
+    greeting: {
+      alias: "g",
+      type: "string",
+      desc: 'A template for the greeting, e.g. "Hello, :subject!"',
+    },
+  },
+  handler: (args: StrictArguments<GreetArgs>) => {
+    const greeting = getGreeting({ name: args.name }, args.greeting);
     console.info(greeting);
-  });
+  },
+};
 
-program
-  .command("roll")
-  .option(
-    "-n, --number <number>",
-    "the number of dice rolls",
-    (input) => Number.parseInt(input),
-    1,
-  )
-  .option("-s, --seed <string>", "seed for the PRNG")
-  .option(
-    "-d, --dice-size <number>",
-    "the dice size",
-    (input) => Number.parseInt(input),
-    6,
-  )
-  .action((opts) => {
+type RollArgs = {
+  number: number;
+  seed: string;
+  diceSize: number;
+};
+
+const rollCommand: CommandModule<object, RollArgs> = {
+  command: "roll",
+  describe: "simulate a dice roll",
+  builder: {
+    number: {
+      alias: "n",
+      type: "number",
+      desc: "the number of dice rolls",
+      default: 1,
+    },
+    "dice-size": {
+      alias: "d",
+      type: "number",
+      desc: "the number of sides on the dice",
+      default: 6,
+    },
+    seed: {
+      alias: "s",
+      type: "string",
+      desc: "seed for the PRNG",
+    },
+  },
+  handler(args: StrictArguments<RollArgs>) {
     const rolls = rollDice({
-      seed: opts.seed,
-      diceSize: opts.diceSize,
-      rolls: opts.number,
+      seed: args.seed,
+      diceSize: args.diceSize,
+      rolls: args.number,
     });
 
     console.info(rolls.join(", "));
-  });
+  },
+};
+
+const program = yargs(hideBin(process.argv))
+  .command(greetCommand)
+  .command(rollCommand);
 
 const main = async () => {
   await program.parseAsync();

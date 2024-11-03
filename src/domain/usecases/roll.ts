@@ -9,6 +9,6 @@ type RollParams = {
 
 export const rollDice = ({ seed, diceSize, rolls }: RollParams) => {
   const prng = seedrandom(seed);
-  const rollOnce = () => Math.floor(prng() * diceSize);
+  const rollOnce = () => Math.floor(prng() * diceSize + 1);
   return times(rolls, rollOnce);
 };
