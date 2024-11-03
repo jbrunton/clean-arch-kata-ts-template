@@ -72,5 +72,22 @@ module.exports = {
         ],
       },
     ],
+    "boundaries/external": [
+      2,
+      {
+        // disallow all external imports by default
+        default: "disallow",
+        rules: [
+          {
+            from: "*",
+            allow: ["remeda", "seedrandom"],
+          },
+          {
+            from: "app",
+            allow: "*",
+          },
+        ],
+      },
+    ],
   },
 };
