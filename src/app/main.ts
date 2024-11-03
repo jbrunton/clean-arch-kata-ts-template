@@ -1,25 +1,28 @@
 import { getGreeting } from "usecases/greet";
-import yargs, { CommandModule } from "yargs";
+import yargs, { Argv, CommandModule } from "yargs";
 import { hideBin } from "yargs/helpers";
-import { StrictArguments } from "./commands/types";
+import { StrictArguments, StrictCommandType } from "./commands/types";
 import { rollDice } from "usecases/roll";
 
-type GreetArgs = {
-  name: string;
-  greeting?: string;
-};
+const greetBuilder = (yargs: Argv) =>
+  yargs
+    .positional("name", {
+      type: "string",
+      demandOption: true,
+    })
+    .options({
+      greeting: {
+        alias: "g",
+        type: "string",
+        desc: 'A template for the greeting, e.g. "Hello, :subject!"',
+      },
+    });
 
-const greetCommand: CommandModule<object, GreetArgs> = {
+const greetCommand: StrictCommandType<typeof greetBuilder> = {
   command: "greet [name]",
   describe: "the name of the person/subject to greet",
-  builder: {
-    greeting: {
-      alias: "g",
-      type: "string",
-      desc: 'A template for the greeting, e.g. "Hello, :subject!"',
-    },
-  },
-  handler: (args: StrictArguments<GreetArgs>) => {
+  builder: greetBuilder,
+  handler: (args) => {
     const greeting = getGreeting({ name: args.name }, args.greeting);
     console.info(greeting);
   },

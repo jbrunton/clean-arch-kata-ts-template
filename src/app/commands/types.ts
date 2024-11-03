@@ -1,4 +1,4 @@
-import { CamelCaseKey } from "yargs";
+import { BuilderCallback, CamelCaseKey, CommandModule } from "yargs";
 
 /**
  * A stricter version of the @types/yargs `ArgumentsCamelCase` type. The `Arguments` and
@@ -13,3 +13,11 @@ export type StrictArguments<T = object> = {
   /** The script name or node command */
   $0: string;
 };
+
+/**
+ * Convenience conditional type for strictly typing a command given the type of its builder.
+ */
+export type StrictCommandType<T> =
+  T extends BuilderCallback<object, infer R>
+    ? CommandModule<object, StrictArguments<R>>
+    : never;
