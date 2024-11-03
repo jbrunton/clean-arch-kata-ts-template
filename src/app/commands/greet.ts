@@ -17,7 +17,7 @@ const builder = (yargs: Argv) =>
     });
 
 export const greetCommand: StrictCommandType<typeof builder> = {
-  command: "greet [name]",
+  command: "greet <name>",
   describe: "the name of the person/subject to greet",
   builder: builder,
   handler: (args) => {
