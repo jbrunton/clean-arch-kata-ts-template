@@ -11,7 +11,7 @@ A template repository with a few TypeScript features:
 
 The sample app is not intended to offer guidance on best practices for organising code. It simply demonstrates some capabilities for a basic CLI app with code and unit tests.
 
-Some of the added libraries (`Commander.js`, `seedrandom`) are intended to assist with the katas in [clean architecture katas](https://github.com/jbrunton/clean-arch-katas).
+Some of the added libraries (`yargs`, `seedrandom`, 'knex') are intended to assist with the katas in [clean architecture katas](https://github.com/jbrunton/clean-arch-katas).
 
 Usage:
 
@@ -28,11 +28,11 @@ $ pnpm cli roll
 Options:
 
 ```bash
-$ pnpm cli greet Amy
-> Hello, Amy!
+$ pnpm cli greet World
+> Hello, World!
 
-$ pnpm cli greet 'Le Monde' --greeting 'Bonjour, :subject!'
-> Bonjour, Le Monde!
+$ pnpm cli greet 'le Monde' --greeting 'Bonjour, :subject!'
+> Bonjour, le Monde!
 
 $ pnpm cli roll -n 4 --dice-size 12 --seed abc
 > 8, 7, 8, 7
@@ -46,3 +46,14 @@ $ pnpm test
 # Or, to watch for changes
 $ pnpm test:watch
 ```
+
+## Code organisation
+
+The eslint configuration defines strict dependency rules that can be used to enforce a clean architecture. By default:
+
+1. `domain/entities` cannot import from any other module.
+2. `domain/usecases` may import from `domain/entities`.
+3. `app` may import from any of the above.
+4. External boundaries are configured so that the domain modules may only import from `remeda` and `seedrandom` (e.g. disallowing dependencies for I/O).
+
+These boundaries are configured in [.eslintrc.js](https://github.com/jbrunton/node-typescript-template/blob/main/.eslintrc.js). See [eslint-plugin-boundaries](https://github.com/javierbrea/eslint-plugin-boundaries) for more on the configuration options.
