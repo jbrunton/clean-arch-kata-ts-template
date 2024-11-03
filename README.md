@@ -31,8 +31,8 @@ Options:
 $ pnpm cli greet World
 > Hello, World!
 
-$ pnpm cli greet 'Le Monde' --greeting 'Bonjour, :subject!'
-> Bonjour, Le Monde!
+$ pnpm cli greet 'le Monde' --greeting 'Bonjour, :subject!'
+> Bonjour, le Monde!
 
 $ pnpm cli roll -n 4 --dice-size 12 --seed abc
 > 8, 7, 8, 7
@@ -56,4 +56,3 @@ The eslint configuration defines strict dependency rules that can be used to enf
 3. `app` may import from any of the above.
 
 These boundaries are configured in [.eslintrc.js](https://github.com/jbrunton/node-typescript-template/blob/main/.eslintrc.js). See [eslint-plugin-boundaries](https://github.com/javierbrea/eslint-plugin-boundaries) for more on the configuration options.
-
