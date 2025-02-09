@@ -1,6 +1,6 @@
-# node-typescript-template
+# clean-arch-kata-ts-template
 
-A template repository with a few TypeScript features:
+A template repository for clean architecture katas with TypeScript, including a few useful features:
 
 1. Uses `pnpm`.
 2. Lints with `eslint` and formats with `prettier`.
