@@ -36,7 +36,7 @@ $ pnpm cli greet 'le Monde' --greeting 'Bonjour, :subject!'
 > Bonjour, le Monde!
 
 $ pnpm cli roll -n 4 --dice-size 12 --seed abc
-> 8, 7, 8, 7
+> 9, 8, 9, 8
 ```
 
 ## Running tests

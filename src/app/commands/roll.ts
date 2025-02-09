@@ -34,6 +34,6 @@ export const rollCommand: StrictCommandType<typeof builder> = {
       rolls: args.number,
     });
 
-    console.info(rolls.join(", "));
+    console.info(rolls());
   },
 };
