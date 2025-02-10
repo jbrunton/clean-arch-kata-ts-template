@@ -2,7 +2,6 @@ import { array, io } from "fp-ts";
 import { flow } from "fp-ts/lib/function";
 import { IO, sequenceArray } from "fp-ts/lib/IO";
 import { ReaderIO } from "fp-ts/lib/ReaderIO";
-import seedrandom from "seedrandom";
 
 type RollParams = {
   diceSize: number;
@@ -10,8 +9,6 @@ type RollParams = {
 };
 
 type RollDie = ReaderIO<number, number>;
-
-export const random: (seed?: string) => IO<number> = (seed) => seedrandom(seed);
 
 const rollOnce: (diceSize: number) => RollDie = (diceSize) => (rand) => () =>
   Math.floor(rand * diceSize + 1);
