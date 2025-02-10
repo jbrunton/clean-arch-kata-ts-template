@@ -1,6 +1,6 @@
 import { Argv } from "yargs";
 import { StrictCommandType } from "./types";
-import { rollDice } from "usecases/roll";
+import { random, rollDice } from "usecases/roll";
 
 const builder = (yargs: Argv) =>
   yargs.options({
@@ -28,12 +28,11 @@ export const rollCommand: StrictCommandType<typeof builder> = {
   describe: "simulate a dice roll",
   builder,
   handler(args) {
-    const rolls = rollDice({
-      seed: args.seed,
+    const rollWithPrng = rollDice({
       diceSize: args.diceSize,
       rolls: args.number,
-    });
+    })(random(args.seed));
 
-    console.info(rolls());
+    console.info(rollWithPrng());
   },
 };
