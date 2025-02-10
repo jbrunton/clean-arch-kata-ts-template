@@ -92,15 +92,15 @@ module.exports = {
         rules: [
           {
             from: "*",
-            allow: ["remeda", "seedrandom"],
-          },
-          {
-            from: "app",
-            allow: "*",
+            allow: ["remeda", "fp-ts"],
           },
           {
             from: ["data", "migrations"],
             allow: "knex",
+          },
+          {
+            from: "app",
+            allow: "*",
           },
         ],
       },
