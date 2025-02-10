@@ -29,11 +29,11 @@ export const rollCommand: StrictCommandType<typeof builder> = {
   describe: "simulate a dice roll",
   builder,
   handler({ diceSize, number, seed }) {
-    const rollWithPrng = rollDice({
+    const roll = rollDice({
       diceSize,
       rolls: number,
     })(seedrandom(seed));
 
-    console.info(rollWithPrng());
+    console.info(roll());
   },
 };
