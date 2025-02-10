@@ -56,7 +56,7 @@ The eslint configuration defines strict dependency rules that can be used to enf
 2. `domain/usecases` may import from `domain/entities`.
 3. `data` may import from the domain modules.
 4. `app` may import from any of the above modules.
-5. External boundaries are configured so that the domain modules may only import from `remeda` and `seedrandom` (e.g. disallowing dependencies for I/O).
+5. External boundaries are configured so that the domain modules may only import from `remeda` and `fp-ts` (e.g. disallowing dependencies for I/O).
 
 These boundaries are configured in [.eslintrc.js](https://github.com/jbrunton/node-typescript-template/blob/main/.eslintrc.js). See [eslint-plugin-boundaries](https://github.com/javierbrea/eslint-plugin-boundaries) for more on the configuration options.
 
